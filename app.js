@@ -1,23 +1,24 @@
 
     const express = require('express');
-const inicial = express();
+const app = express();
 
 const path = require('path');
 const publicPath = path.resolve('public');
-inicial.use(express.static(publicPath));
+app.use(express.static(publicPath));
 
+const port = process.env.PORT ||3000
 const puerto = 1234;
-inicial.listen(puerto, ()=> {
+app.listen(port, ()=> {
     console.log('iniciando')
 });
 
-inicial.get('/', (req, res)=>{
+app.get('/', (req, res)=>{
     res.sendFile(path.resolve('views/home.html'))
 });
-inicial.get('/registro', (req, res)=>{
+app.get('/registro', (req, res)=>{
     res.sendFile(path.resolve('views/register.html'))
 });
 
-inicial.get('/login', (req, res)=>{
+app.get('/login', (req, res)=>{
     res.sendFile(path.resolve('views/login.html'))
 });
